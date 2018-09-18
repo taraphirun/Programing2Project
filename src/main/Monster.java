@@ -7,11 +7,12 @@ public abstract class Monster extends All{
 	private int damage;
 	private String name;
 	private ArrayList<Item> inventory;
-	public Monster(String descr, String name,int damage,ArrayList<Item> itemList) {
+	public Monster(String descr, String name,int damage,int HP,ArrayList<Item> itemList) {
 		super(descr);
 		inventory=itemList;
 		this.damage=damage;
 		this.name=name;
+		this.HP=HP;
 	}
 	
 	public void decreaseHP(int damage) {

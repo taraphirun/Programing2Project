@@ -2,17 +2,17 @@ package main;
 
 public class Weapon extends Item{
 	private int damage;
-	public Weapon(String name, String descr, int weight,int damage) {
+	private String type;//Range or CloseUp
+	public Weapon(String name, String descr, int weight,int damage,String type) {
 		super(name, descr, weight);
+		this.type=type;
 		this.damage=damage;
 	}
-	
-	
-	
 	///GET SET
-	protected int getDamage() {
-		return damage;
+	protected void setDamage(int damage) {
+		this.damage = damage;
 	}
-
-
+	protected String getType() {
+		return type;
+	}
 }
