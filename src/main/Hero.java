@@ -32,6 +32,36 @@ public class Hero extends All implements Skills{
 		armor=null;
 	}
 	//CAN_DO
+	public void go(char d) {	
+		switch(d) {
+		case 's' : Functions.x+=1;break;
+		case 'e' : Functions.y+=1;break;
+		case 'n' : Functions.x-=1;break;
+		case 'w' : Functions.y-=1;break;
+		default: System.out.print("Invalid input");
+		}
+		//Move To the NEXT Stage
+		if(Functions.y>=Functions.stages[0][0].length && Functions.stages[Functions.s][Functions.x][Functions.y-1].isStageConnect()) {
+			Functions.s++;
+			Functions.x=0;
+			Functions.y=0;
+		//Move back to the PREVIOUS Stage
+		}else if(Functions.y<0 && Functions.stages[Functions.s][Functions.x][Functions.y+1].isStageConnect()){
+			Functions.s--;
+			Functions.x=Functions.stages[0].length-1;
+			Functions.y=Functions.stages[0][0].length-1;
+		//Move around in one stage
+		} else if(Functions.x<0 || Functions.x>Functions.stages[0].length-1 || Functions.y<0 || Functions.y>Functions.stages[0][0].length-1 || Functions.s<0|| Functions.s>Functions.stages.length-1 || Functions.stages[Functions.s][Functions.x][Functions.y]==null) {//Prevent player from moving to places that is not exited
+			switch(d) {
+			case 's' : Functions.x-=1;break;
+			case 'e' : Functions.y-=1;break;
+			case 'n' : Functions.x+=1;break;
+			case 'w' : Functions.y+=1;break;
+			default: System.out.print("Invalid input");
+			}	
+			System.out.println("There is no road going that way!");
+		}
+	}
 	public void changeWeapon(Weapon x) {////////////////////////////////////////MAY Cause issue here. instanceof
 		if(inventory.contains(x)) {
 			currentWeapon=x;

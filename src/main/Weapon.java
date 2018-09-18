@@ -12,6 +12,9 @@ public class Weapon extends Item{
 	protected void setDamage(int damage) {
 		this.damage = damage;
 	}
+	protected int getDamage() {
+		return damage;
+	}
 	protected String getType() {
 		return type;
 	}

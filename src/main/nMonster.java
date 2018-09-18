@@ -15,7 +15,6 @@ public class nMonster extends Monster implements Monster_AI{
 
 	@Override
 	public void fightOrFlight() {
-		if
 		
 	}
 
