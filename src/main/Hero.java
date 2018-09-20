@@ -4,18 +4,18 @@ package main;
 
 import java.util.*;
 
-public class Hero extends All implements Skills{
+public class Hero extends All implements Skills,comActions{
 	private ArrayList<Item> inventory;
 	private Armor armor;			
 	private Weapon currentWeapon;
 	private String name;
-	
+	private int s,x,y;
 	private int cWeight;
 	private double HP,MP,XP; //use double to keep a more accurate data when updating
 	
 	
 	//Tracking Variable
-	private int maxXP=500;////THIS is the ultimate constant that will define how high the other can be. WILL NOT BE ALTERED.
+	private final int maxXP=500;////THIS is the ultimate constant that will define how high the other can be. WILL NOT BE ALTERED.
 	private int maxWeight=100;
 	private int maxHP=100;
 	private int maxMP=100;
@@ -23,6 +23,7 @@ public class Hero extends All implements Skills{
 	//CONSTANT
 	private static final int minHeavy=5;
 	private static final int minMagic=15;
+	//Constructor
 	public Hero(String name, String descr) {
 		super(descr);
 		this.name = name;
@@ -34,35 +35,35 @@ public class Hero extends All implements Skills{
 	//CAN_DO
 	public void go(char d) {	
 		switch(d) {
-		case 's' : Functions.x+=1;break;
-		case 'e' : Functions.y+=1;break;
-		case 'n' : Functions.x-=1;break;
-		case 'w' : Functions.y-=1;break;
+		case 's' : x+=1;break;
+		case 'e' : y+=1;break;
+		case 'n' : x-=1;break;
+		case 'w' : y-=1;break;
 		default: System.out.print("Invalid input");
 		}
-		//Move To the NEXT Stage
-		if(Functions.y>=Functions.stages[0][0].length && Functions.stages[Functions.s][Functions.x][Functions.y-1].isStageConnect()) {
-			Functions.s++;
-			Functions.x=0;
-			Functions.y=0;
-		//Move back to the PREVIOUS Stage
-		}else if(Functions.y<0 && Functions.stages[Functions.s][Functions.x][Functions.y+1].isStageConnect()){
-			Functions.s--;
-			Functions.x=Functions.stages[0].length-1;
-			Functions.y=Functions.stages[0][0].length-1;
+		//Move To the NEXT Assets
+		if(y>=Assets.map[0][0].length && Assets.map[s][x][y-1].isConnected()) {
+			s++;
+			x=0;
+			y=0;
+		//Move back to the PREVIOUS Assets
+		}else if(y<0 && Assets.map[s][x][y+1].isConnected()){
+			s--;
+			x=Assets.map[0].length-1;
+			y=Assets.map[0][0].length-1;
 		//Move around in one stage
-		} else if(Functions.x<0 || Functions.x>Functions.stages[0].length-1 || Functions.y<0 || Functions.y>Functions.stages[0][0].length-1 || Functions.s<0|| Functions.s>Functions.stages.length-1 || Functions.stages[Functions.s][Functions.x][Functions.y]==null) {//Prevent player from moving to places that is not exited
+		} else if(x<0 || x>Assets.map[0].length-1 || y<0 || y>Assets.map[0][0].length-1 || s<0|| s> Assets.map.length-1 || Assets.map[s][x][y]==null) {//Prevent player from moving to places that is not exited
 			switch(d) {
-			case 's' : Functions.x-=1;break;
-			case 'e' : Functions.y-=1;break;
-			case 'n' : Functions.x+=1;break;
-			case 'w' : Functions.y+=1;break;
+			case 's' : x-=1;break;
+			case 'e' : y-=1;break;
+			case 'n' : x+=1;break;
+			case 'w' : y+=1;break;
 			default: System.out.print("Invalid input");
 			}	
 			System.out.println("There is no road going that way!");
 		}
 	}
-	public void changeWeapon(Weapon x) {////////////////////////////////////////MAY Cause issue here. instanceof
+	public void changeWeapon(Weapon x) {//////////////MAY Cause issue here. instanceof
 		if(inventory.contains(x)) {
 			currentWeapon=x;
 			System.out.println("Weapon changed to "+currentWeapon);
@@ -70,7 +71,7 @@ public class Hero extends All implements Skills{
 			System.out.println("You don't have this weapon!");
 		}	
 	}
-	public void changeArmor(Armor x) {////////////////////////////////////////MAY Cause issue here. instanceof
+	public void changeArmor(Armor x) {//////////////MAY Cause issue here. instanceof
 		if(inventory.contains(x)) {
 			armor=x;
 			System.out.println("armor changed to "+armor);
@@ -98,6 +99,12 @@ public class Hero extends All implements Skills{
 			return null;
 		}
 	}
+	@Override
+	public ArrayList<Item> dropItem() {
+		ArrayList<Item> tempt=(ArrayList<Item>) inventory.clone();
+		inventory.clear();
+		return tempt;
+	}
 	public void checkInventory() {
 		int i =1;
 		for(Item x: inventory) {
@@ -105,7 +112,7 @@ public class Hero extends All implements Skills{
 		}
 	}
 	//CanBeDoneOn
-	public void decreaseHP(int damage) {/////////////////////////////////////////Need tests to see if work as needed
+	public void decreaseHP(int damage) { //////////////////Need tests to see if work as needed
 		int aHP =armor.getArmorHP();
 		if(aHP>0) {
 			aHP-=damage;
@@ -134,6 +141,11 @@ public class Hero extends All implements Skills{
 		}	//for every 10 XP gained, player can carry 1 extra unit of weight....
 	}
 		//FIGHT
+	@Override
+	public int attack() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	public int fistFight() {
 		int damage = (int)(XP/2);
 		return damage;
@@ -143,12 +155,6 @@ public class Hero extends All implements Skills{
 		return damage;
 	}
 	
-	@Override//////////////////////////////////////////////////////////////make more story like
-	public String toString() {
-		return "Hero [cWeight=" + cWeight + ", HP=" + HP + ", MP=" + MP + ", XP=" + XP + "]";
-	}
-///IMPLEMENT
-
 	@Override
 	public int heavyAttack(int mana) {///////Mana will be randomly generated
 		int damage = (int)(XP/2);
@@ -163,9 +169,8 @@ public class Hero extends All implements Skills{
 			return damage*(1+mana/2);
 		}
 	}
-
 	@Override
-	public int magicAttack(int mana) {///////Mana will be randomly generated
+	public int magicAttack(int mana) {
 		int damage = (int)(XP/2);
 		if(MP<mana) {
 			System.out.println("You don't have enough MP!!!");
@@ -178,9 +183,10 @@ public class Hero extends All implements Skills{
 			return damage*(1+mana);
 		}
 	}
-	
-	
-	
+	@Override//////////////////////////////////////////////////////////////make more story like
+	public String toString() {
+		return "Hero [cWeight=" + cWeight + ", HP=" + HP + ", MP=" + MP + ", XP=" + XP + "]";
+	}
 //	//GET SET
 //	protected double getHP() {
 //		return HP;

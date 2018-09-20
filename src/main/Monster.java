@@ -2,19 +2,18 @@ package main;
 
 import java.util.ArrayList;
 
-public abstract class Monster extends All{
+public class Monster extends All implements comActions{
 	private int HP;
 	private int damage;
 	private String name;
-	private ArrayList<Item> inventory;
+	private ArrayList<Item> itemList;
 	public Monster(String descr, String name,int damage,int HP,ArrayList<Item> itemList) {
 		super(descr);
-		inventory=itemList;
+		this.itemList=itemList;
 		this.damage=damage;
 		this.name=name;
 		this.HP=HP;
 	}
-	
 	public void decreaseHP(int damage) {
 		HP-=damage;
 		if(HP<=0) {
@@ -23,15 +22,19 @@ public abstract class Monster extends All{
 			dropItem();////so when dead, drop items
 		}
 	}
-	public abstract int attack();////////////////////////////////////////////Could allow monster to attack with special attack to increase difficulty
-	private ArrayList<Item> dropItem(){
-		return inventory;////not needed to check if mon = dead, since this method is only call when HP <=0
+	@Override
+	public int attack() {
+		return damage;
+	}
+	public int normalAttack() {
+		return damage;
+	}
+	@Override
+	public ArrayList<Item> dropItem(){
+		return itemList;
 	}
 	//GET SET
 	public int getDamage() {
 		return damage;
 	}
-	
-	
-	
 }
