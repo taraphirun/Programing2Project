@@ -1,6 +1,8 @@
 package main;
 
-public abstract class All {
+import java.io.Serializable;
+
+public abstract class All implements Serializable {
 	private String Descr;
 
 	public All(String descr) {

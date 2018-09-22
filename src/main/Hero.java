@@ -2,14 +2,19 @@
 
 package main;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Hero extends All implements Skills,comActions{
+public class Hero extends All implements Skills,comActions,Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Item> inventory;
 	private Armor armor;			
 	private Weapon currentWeapon;
 	private String name;
-	private int s,x,y;
+	private int s;
+	private int x;
+	private int y;
 	private int cWeight;
 	private double HP,MP,XP; //use double to keep a more accurate data when updating
 	
@@ -24,14 +29,19 @@ public class Hero extends All implements Skills,comActions{
 	private static final int minHeavy=5;
 	private static final int minMagic=15;
 	//Constructor
-	public Hero(String name, String descr) {
-		super(descr);
+	public Hero(String name) {
+		super("You are a cook and adventurer! Your mission is to kill all monsters and be the best cook!");
 		this.name = name;
 		HP=100;
 		MP=10;
 		XP=10;
+		s=0;x=0;y=0;
+		cWeight=50;
 		armor=null;
 	}
+	
+	
+	
 	//CAN_DO
 	public void go(char d) {	
 		switch(d) {
@@ -183,10 +193,13 @@ public class Hero extends All implements Skills,comActions{
 			return damage*(1+mana);
 		}
 	}
-	@Override//////////////////////////////////////////////////////////////make more story like
-	public String toString() {
-		return "Hero [cWeight=" + cWeight + ", HP=" + HP + ", MP=" + MP + ", XP=" + XP + "]";
-	}
+//	@Override//////////////////////////////////////////////////////////////make more story like
+//	public String toString() {
+//		return "Hero [cWeight=" + cWeight + ", HP=" + HP + ", MP=" + MP + ", XP=" + XP + "]";
+//	}
+	//toStringTest
+	
+	
 //	//GET SET
 //	protected double getHP() {
 //		return HP;
@@ -223,6 +236,16 @@ public class Hero extends All implements Skills,comActions{
 //	protected void setArmor(int armor) {
 //		this.armor = armor;
 //	}
+
+
+
+	@Override
+	public String toString() {
+		return "Hero [inventory=" + inventory + ", armor=" + armor + ", currentWeapon=" + currentWeapon + ", name="
+				+ name + ", s=" + s + ", x=" + x + ", y=" + y + ", cWeight=" + cWeight + ", HP=" + HP + ", MP=" + MP
+				+ ", XP=" + XP + ", maxXP=" + maxXP + ", maxWeight=" + maxWeight + ", maxHP=" + maxHP + ", maxMP="
+				+ maxMP + "]";
+	}
 	
 
 }

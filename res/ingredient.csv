@@ -1,14 +1,15 @@
 Tomato~Just tomato~2~5~0~TRUE~1
 Dragon Egg~Need to cook first~1~0~0~FALSE~2
 Salt~Used for adding flavor in food~1~0~0~FALSE~3
-Small Red Portion~Small Red Portion makes from many herps. If consume it it will increase your HP by 15.~5~15~0~TRUE~4
-Small blue Portion~Small Blue Portion makes from many magic herps. If consume it, it will increase your MP by 15.~5~0~15~TRUE~5
-Normal Red Portion~Normal Red Portion makes from many herps. If consume it, it will increase your HP by 50.~8~50~0~TRUE~6
-Normal Blue Portion~Normal Blue Portion makes from many magic herps. If consume it, it will increase your MP by 50.~7~0~50~TRUE~7
-Big Red Portion~Big Red Portion makes from many herps. If consume it, it will increase your HP by 150.~6~150~0~TRUE~8
-Big Blue Portion~Big Blue Portion makes from many magic herps. If consume it, it will increase your MP by 150.~9~0~150~TRUE~9
+Small Red potion~Small Red potion makes from many herps. If consume it it will increase your HP by 15.~5~15~0~TRUE~4
+Small blue potion~Small Blue potion makes from many magic herps. If consume it, it will increase your MP by 15.~5~0~15~TRUE~5
+Normal Red potion~Normal Red potion makes from many herps. If consume it, it will increase your HP by 50.~8~50~0~TRUE~6
+Normal Blue potion~Normal Blue potion makes from many magic herps. If consume it, it will increase your MP by 50.~7~0~50~TRUE~7
+Big Red potion~Big Red potion makes from many herps. If consume it, it will increase your HP by 150.~6~150~0~TRUE~8
+Big Blue potion~Big Blue potion makes from many magic herps. If consume it, it will increase your MP by 150.~9~0~150~TRUE~9
 Flour~Need to cook first~5~0~0~FALSE~10
 Olive Oil~Need to cook first~4~0~0~FALSE~11
 Cheese~It has smell, but can eat. However, If it is cook, it will have good smell~3~15~0~TRUE~12
 Black Pepper~Spice for food. ~3~0~0~FALSE~13
 Garlic~Spice for food.~3~0~0~FALSE~14
+Milk~~10~50~0~TRUE~15

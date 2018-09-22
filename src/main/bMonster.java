@@ -6,7 +6,7 @@ public class bMonster extends Monster implements Skills{
 	private int MP;
 	private int minHeavy=10;
 	private int minMagic=50;
-	public bMonster(String descr, String name, int damage, ArrayList<Item> itemList,int MP) {
+	public bMonster(String descr, String name, int damage,int MP,ArrayList<Item> itemList) {
 		super(descr, name, damage, MP, itemList);
 		this.MP=MP;
 	}
