@@ -17,9 +17,6 @@ public class Ingredient extends Item{
 	public int getMP() {
 		return MP;
 	}
-//	protected String getName() {
-//		return super.getName();
-//	}
 
 	@Override
 	public String toString() {

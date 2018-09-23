@@ -2,7 +2,7 @@ package main;
 
 public class Weapon extends Item{
 	private int damage;
-	private String type;//Range or CloseUp
+	private String type;
 	public Weapon(String name, String descr, int weight,int damage,String type) {
 		super(name, descr, weight);
 		this.type=type;

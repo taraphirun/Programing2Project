@@ -1,3 +1,21 @@
-0~0~0~Chocolate Lake~This is the largest chocolate lake ever, steaming with dark, milky chocolate.~There is a road to the east, and a small path to the south.~2~5~TRUE~FALSE
-0~0~1~Lava Lake~This is the largest lava lake ever, steaming with dark, milky Lava.~There is a road to the west.~1~3~TRUE~FALSE
-0~1~0~Ice Lake~Just an lake~There is a small path to the north.~1~3~TRUE~FALSE
+0~0~0~Forest Entrance~Huge trees surround you and many brown, crunchy leaves on the ground.~There is a road to the east, and a small path to the south.~TRUE~TRUE~FALSE~FALSE
+0~1~0~Giant Oak Tree~This tree looks so tall, it must have been here for many hundreds of years~There is a road west back to the entrance and a road to the east.~FALSE~FALSE~FALSE~FALSE
+0~2~0~Berry Bush~There's a bush with red berries on it. They look tasty.~There is a road going back west and a small path to the south.~FALSE~TRUE~FALSE~FALSE
+0~2~1~MONSTER~There is a small monster here. He growls at you. He kinda looks like an onion.~There is a path going back north and a dirt path to the east.~FALSE~TRUE~TRUE~FALSE
+0~3~1~Pile of Leaves~There's a pile of leaves on the ground, all different colours.~There is a dirt path back to the west and a small path to the south.~FALSE~FALSE~FALSE~FALSE
+0~3~2~Green Bush~There is a leafy green bush on your right.~There is a small path going back north and a path to the east.~TRUE~TRUE~FALSE~FALSE
+0~4~2~MONSTER~A tomato monster leaps out from that bush you just saw. He waves his arms and screams. ~There is a path going back to the west and a road to the south.~FALSE~TRUE~TRUE~FALSE
+0~4~3~Tall Tree~That tree looks really tall.~There is a road going back north and a path to the east~FALSE~FALSE~FALSE~FALSE
+0~5~3~Giant Log~A huge log is lying on the floor, it must have fallen from a tree. There seems to be a bag stuck underneath it. ~There is a path going back west and a path to the south.~FALSE~FALSE~FALSE~FALSE
+0~5~4~MINI BOSS MONSTER~A loud scream can be heard, you run towards it. It's a huge bread monster! He looks squishy but, you don't dare to touch him.~There is a path to the west and a open road to the south.~FALSE~TRUE~TRUE~FALSE
+0~0~1~Large Tree~A large tree with no leaves stands to the right.~There's a path north back to the entrance and a road to the south.~FALSE~FALSE~FALSE~FALSE
+0~0~2~Green Bush~There is a leafy green bush on your right.~There is a road back north and a pathway going east.~FALSE~FALSE~FALSE~FALSE
+0~1~2~Pile of Leaves~There's a pile of leaves on the ground, all different colours.~There's a pathway back west and a road leading south.~TRUE~TRUE~FALSE~FALSE
+0~1~3~MONSTER~A large carrot appears from behind a tree. It's eyes looking directly at you.~There's a road leading back north and a small dirt path going east.~FALSE~TRUE~TRUE~FALSE
+0~2~3~Giant Log~A huge log is lying on the floor, it must have fallen from a tree.~There's a dirt path going back east and a path going south.~FALSE~FALSE~FALSE~FALSE
+0~2~4~Pile of Sticks~There are a large pile of small sticks on the ground, short, long, all kinds of sizes.~There's a path going back north, a road going east and a pathway you can just about see going south.~TRUE~TRUE~FALSE~FALSE
+0~3~4~MONSTER~There is a small monster here. He growls at you. He kinda looks like a cucumber.~There's a path back west and a road going east~FALSE~TRUE~TRUE~FALSE
+0~4~4~Big Tree Stump~A big tree stump is stuck in the ground, it looks like somebody cut it badly. There is some kind of bag behind it.~There's a road leading back west and a road going east.~FALSE~FALSE~FALSE~FALSE
+0~5~5~Forest Exit~There's an open road ahead, the trees end here. You're free of the forest! Grabbing tight to your bag, you carry on.~There's an open road leaving the forest, or you can turn back north, back into the forest.~FALSE~FALSE~FALSE~TRUE
+0~2~5~MONSTER~The ground shakes, a huge heavy Cabbage monster rolls directly towards you.~There is a small path to the west and a road to the north.~FALSE~TRUE~TRUE~FALSE
+0~1~5~Small Cabin~In the middle of nowhere, there is a small log cabin with one dirty window. Looking inside, you see a chest.~There is only a small path to the east~TRUE~TRUE~FALSE~FALSE

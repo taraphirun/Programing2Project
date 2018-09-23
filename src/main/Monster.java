@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 
 public class Monster extends All implements comActions{
+	private static final long serialVersionUID = 1L;
 	private int HP;
 	private int damage;
 	private String name;
@@ -30,8 +31,8 @@ public class Monster extends All implements comActions{
 		return damage;
 	}
 	@Override
-	public ArrayList<Item> dropItem(){
-		return itemList;
+	public void dropItem(){
+		
 	}
 	//GET SET
 	public int getDamage() {

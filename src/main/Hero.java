@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Hero extends All implements Skills,comActions,Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Item> inventory;
+	private ArrayList<Item> inventory= new ArrayList<Item>();
 	private Armor armor;			
 	private Weapon currentWeapon;
 	private String name;
@@ -38,17 +38,19 @@ public class Hero extends All implements Skills,comActions,Serializable{
 		s=0;x=0;y=0;
 		cWeight=50;
 		armor=null;
+		Weapon defaultWP = new Weapon("Dagger","It's an old, rusted dagger.",15,15,"Epic");
+		inventory.add(defaultWP);
 	}
 	
 	
 	
 	//CAN_DO
-	public void go(char d) {	
-		switch(d) {
-		case 's' : x+=1;break;
-		case 'e' : y+=1;break;
-		case 'n' : x-=1;break;
-		case 'w' : y-=1;break;
+	public void go(String d) {	
+		switch(d.toLowerCase()) {
+		case "s" :case "south": x+=1;break;
+		case "e" :case "east": y+=1;break;
+		case "n" :case "north": x-=1;break;
+		case "w" :case "west": y-=1;break;
 		default: System.out.print("Invalid input");
 		}
 		//Move To the NEXT Assets
@@ -64,10 +66,10 @@ public class Hero extends All implements Skills,comActions,Serializable{
 		//Move around in one stage
 		} else if(x<0 || x>Assets.map[0].length-1 || y<0 || y>Assets.map[0][0].length-1 || s<0|| s> Assets.map.length-1 || Assets.map[s][x][y]==null) {//Prevent player from moving to places that is not exited
 			switch(d) {
-			case 's' : x-=1;break;
-			case 'e' : y-=1;break;
-			case 'n' : x+=1;break;
-			case 'w' : y+=1;break;
+			case "s" :case "south": x-=1;break;
+			case "e" :case "east": y-=1;break;
+			case "n" :case "north": x+=1;break;
+			case "w" :case "west": y+=1;break;
 			default: System.out.print("Invalid input");
 			}	
 			System.out.println("There is no road going that way!");
@@ -110,16 +112,18 @@ public class Hero extends All implements Skills,comActions,Serializable{
 		}
 	}
 	@Override
-	public ArrayList<Item> dropItem() {
-		ArrayList<Item> tempt=(ArrayList<Item>) inventory.clone();
+	public void dropItem() {
+		getLocation().addItemList(inventory);
 		inventory.clear();
-		return tempt;
 	}
 	public void checkInventory() {
 		int i =1;
 		for(Item x: inventory) {
 			System.out.println(i+". "+x);i++;
 		}
+	}
+	public Place getLocation() {
+		return Assets.map[s][x][y];
 	}
 	//CanBeDoneOn
 	public void decreaseHP(int damage) { //////////////////Need tests to see if work as needed
@@ -204,6 +208,9 @@ public class Hero extends All implements Skills,comActions,Serializable{
 //	protected double getHP() {
 //		return HP;
 //	}
+	protected String getName() {
+		return name;
+	}
 //	protected double getMP() {
 //		return MP;
 //	}
@@ -222,23 +229,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 //	protected Weapon getCurrentWeapon() {
 //		return currentWeapon;
 //	}
-//	protected String getName() {
-//		return name;
-//	}
-//	//SET
-//	protected void setHP(int hP) {
-//		HP = hP;
-//	}
-//	protected void setMP(int mP) {
-//		MP = mP;
-//	}
-//	
-//	protected void setArmor(int armor) {
-//		this.armor = armor;
-//	}
-
-
-
+//Assets.player = (Hero)loadIn.readObject();
 	@Override
 	public String toString() {
 		return "Hero [inventory=" + inventory + ", armor=" + armor + ", currentWeapon=" + currentWeapon + ", name="

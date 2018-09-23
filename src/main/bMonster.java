@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 
 public class bMonster extends Monster implements Skills{
+	private static final long serialVersionUID = 1L;
 	private int MP;
 	private int minHeavy=10;
 	private int minMagic=50;
