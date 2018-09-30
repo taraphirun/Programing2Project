@@ -17,6 +17,9 @@ public class Ingredient extends Item{
 	public int getMP() {
 		return MP;
 	}
+	public boolean isConsumable() {
+		return isConsumable;
+	}
 
 	@Override
 	public String toString() {

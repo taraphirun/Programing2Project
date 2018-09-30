@@ -1,21 +1,56 @@
-0~0~0~Forest Entrance~Huge trees surround you and many brown, crunchy leaves on the ground.~There is a road to the east, and a small path to the south.~TRUE~TRUE~FALSE~FALSE
-0~1~0~Giant Oak Tree~This tree looks so tall, it must have been here for many hundreds of years~There is a road west back to the entrance and a road to the east.~FALSE~FALSE~FALSE~FALSE
-0~2~0~Berry Bush~There's a bush with red berries on it. They look tasty.~There is a road going back west and a small path to the south.~FALSE~TRUE~FALSE~FALSE
-0~2~1~MONSTER~There is a small monster here. He growls at you. He kinda looks like an onion.~There is a path going back north and a dirt path to the east.~FALSE~TRUE~TRUE~FALSE
-0~3~1~Pile of Leaves~There's a pile of leaves on the ground, all different colours.~There is a dirt path back to the west and a small path to the south.~FALSE~FALSE~FALSE~FALSE
-0~3~2~Green Bush~There is a leafy green bush on your right.~There is a small path going back north and a path to the east.~TRUE~TRUE~FALSE~FALSE
-0~4~2~MONSTER~A tomato monster leaps out from that bush you just saw. He waves his arms and screams. ~There is a path going back to the west and a road to the south.~FALSE~TRUE~TRUE~FALSE
-0~4~3~Tall Tree~That tree looks really tall.~There is a road going back north and a path to the east~FALSE~FALSE~FALSE~FALSE
-0~5~3~Giant Log~A huge log is lying on the floor, it must have fallen from a tree. There seems to be a bag stuck underneath it. ~There is a path going back west and a path to the south.~FALSE~FALSE~FALSE~FALSE
-0~5~4~MINI BOSS MONSTER~A loud scream can be heard, you run towards it. It's a huge bread monster! He looks squishy but, you don't dare to touch him.~There is a path to the west and a open road to the south.~FALSE~TRUE~TRUE~FALSE
-0~0~1~Large Tree~A large tree with no leaves stands to the right.~There's a path north back to the entrance and a road to the south.~FALSE~FALSE~FALSE~FALSE
-0~0~2~Green Bush~There is a leafy green bush on your right.~There is a road back north and a pathway going east.~FALSE~FALSE~FALSE~FALSE
-0~1~2~Pile of Leaves~There's a pile of leaves on the ground, all different colours.~There's a pathway back west and a road leading south.~TRUE~TRUE~FALSE~FALSE
-0~1~3~MONSTER~A large carrot appears from behind a tree. It's eyes looking directly at you.~There's a road leading back north and a small dirt path going east.~FALSE~TRUE~TRUE~FALSE
-0~2~3~Giant Log~A huge log is lying on the floor, it must have fallen from a tree.~There's a dirt path going back east and a path going south.~FALSE~FALSE~FALSE~FALSE
-0~2~4~Pile of Sticks~There are a large pile of small sticks on the ground, short, long, all kinds of sizes.~There's a path going back north, a road going east and a pathway you can just about see going south.~TRUE~TRUE~FALSE~FALSE
-0~3~4~MONSTER~There is a small monster here. He growls at you. He kinda looks like a cucumber.~There's a path back west and a road going east~FALSE~TRUE~TRUE~FALSE
-0~4~4~Big Tree Stump~A big tree stump is stuck in the ground, it looks like somebody cut it badly. There is some kind of bag behind it.~There's a road leading back west and a road going east.~FALSE~FALSE~FALSE~FALSE
-0~5~5~Forest Exit~There's an open road ahead, the trees end here. You're free of the forest! Grabbing tight to your bag, you carry on.~There's an open road leaving the forest, or you can turn back north, back into the forest.~FALSE~FALSE~FALSE~TRUE
-0~2~5~MONSTER~The ground shakes, a huge heavy Cabbage monster rolls directly towards you.~There is a small path to the west and a road to the north.~FALSE~TRUE~TRUE~FALSE
-0~1~5~Small Cabin~In the middle of nowhere, there is a small log cabin with one dirty window. Looking inside, you see a chest.~There is only a small path to the east~TRUE~TRUE~FALSE~FALSE
+0~0~0~The Entrance~An open space surrounds you as you walk through the forest. You step on something hard. But which way to go?~There is a road to the east, and a small path to the south.~FALSE~FALSE~FALSE~FALSE
+0~0~1~Giant Oak Tree~This tree looks so tall, it must have been here for many hundreds of years~There is a road west back to the entrance and a road to the east.~FALSE~FALSE~FALSE~FALSE
+0~0~2~Big Rock~There's a big rock standing in the way. You hear a low grumbling coming from behind. ~There is a road going back west and a small path to the south.~TRUE~TRUE~TRUE~FALSE
+0~0~6~Berry Bush~A bush is covering the path, it has some kind of red berries on it.~There's only a path going back south.~FALSE~FALSE~FALSE~FALSE
+0~1~0~Pile of Leaves~There's a pile of leaves on the ground, all different colours.~There's a path going north and a path going south~FALSE~FALSE~FALSE~FALSE
+0~1~2~Green Bush~There is a leafy green bush on your right.~There's a small path going back north and a path going east.~FALSE~FALSE~FALSE~FALSE
+0~1~3~Big Puddle of Water~It looks green and brown. Probably best not to step in it.~There's a road going west, south and east.~FALSE~FALSE~FALSE~FALSE
+0~1~4~Tree with No Leaves~That tree looks really tall.~There's a road going west and a small dirt path going east.~FALSE~FALSE~FALSE~FALSE
+0~1~5~Giant Log~A huge log is lying on the floor, it must have fallen from a tree. ~There's a dirt path going west and a path going east.~FALSE~FALSE~FALSE~FALSE
+0~1~6~Huge Footprint~A giant footprint is in the mud on the ground. Who has feet that big?~There's a path going north, east, south and west.~TRUE~TRUE~TRUE~FALSE
+0~1~7~Stone Wall~A wall made from big stones is here. You wonder how it got here, maybe from many years ago.~There's a path going west and a dirt road going east.~FALSE~FALSE~FALSE~FALSE
+0~1~8~Small Mountain~It looks big and has snow on top of it. ~There's a dirt road going west and a road going south.~FALSE~FALSE~FALSE~FALSE
+0~2~0~Puddle of Oil~There's a puddle of oil there, it looks slippery and smells.... strangely like olives.~There's a road going back north and a road to the east.~TRUE~TRUE~TRUE~FALSE
+0~2~1~Pile of Sticks~They look brown and... sticky.~There's a road to the west and a path to the south.~FALSE~FALSE~FALSE~FALSE
+0~2~3~Small Swamp~Up ahead is a small swamp, a giant green lake with bubbles coming out of the water. Better to not go swimming.~There's a path north and south.~TRUE~TRUE~TRUE~FALSE
+0~2~6~Flower Bush~There's a big green bush ahead, it has small blue flowers on it. How pretty.~There's a road north and south.~FALSE~FALSE~FALSE~FALSE
+0~2~8~Puddle of Chocolate~It smells like chocolate, looks like chocolate. But are you sure it's chocolate? Maybe just one taste...~There's a dirt path north and south.~TRUE~TRUE~TRUE~FALSE
+0~3~1~Big Pile of Dirt~It's just a pile of dirt. Wonder if there's anything in it?~There's an opening north and south.~FALSE~FALSE~FALSE~FALSE
+0~3~3~Giant Fern Tree~It looks like a palm tree.~There's a road going north and a path going east.~FALSE~FALSE~FALSE~FALSE
+0~3~4~Big Rock~There's a big rock by the trees. ~There's a path going west and a mud path going east.~FALSE~FALSE~FALSE~FALSE
+0~3~5~Puddle of Cheese~There's a puddle of melted cheese on the ground. Strangely is has a footprint inside it...~There's a mud path west and a trail to the east.~TRUE~TRUE~TRUE~FALSE
+0~3~6~Tree Trunk~It looks like the tree was cut down. But all that's left is the trunk, stuck in the ground.~There's a trail to the west and openings going north and south.~FALSE~FALSE~FALSE~FALSE
+0~3~8~An Old Tent~There seems to be an old tent here. Maybe someone left it here when they went camping.~There's a path going north and south.~FALSE~FALSE~FALSE~FALSE
+0~4~1~Pile of Brown Leaves~There's a huge pile of leaves here, they're mostly brown and dead.~There's a trail going north and south.~FALSE~FALSE~FALSE~FALSE
+0~4~6~Berry Bush~There's a bit bush in front of you with some purple berries. They look tasty.~There's a pathway going north, a dirt road to the east and a mud path to the south.~FALSE~FALSE~FALSE~FALSE
+0~4~7~Small Garlic Shells~It looks like someone was peeling garlic here.~There's a dirt path to the west and a road to the east.~TRUE~TRUE~TRUE~FALSE
+0~4~8~Weeds~There's a bunch of weeds on the ground, they have some flowers coming out of them.~There's a road to the west and an opening to the east.~FALSE~FALSE~FALSE~FALSE
+0~4~9~Carrot Patch~There are so many carrots growing here in the ground. But there's also a big hole in the ground...~There's an opening to the west and a mud path to the south.~TRUE~TRUE~TRUE~FALSE
+0~5~1~Corn Field~The corn is so tall, it's hard to see where you're going.~There's a road to the north, a path to the east and a mud path to the south.~TRUE~TRUE~TRUE~FALSE
+0~5~2~Dragon Nest~It looks like a dragon lives here. Be careful. ~There's a path to the west and an opening to the east.~TRUE~TRUE~TRUE~FALSE
+0~5~3~Big Rock~There's a big rock to your right. It looks unbreakable.~There's an opening to the west and a path to the east.~FALSE~FALSE~FALSE~FALSE
+0~5~4~Fallen Tree~This tree fell over, but how did it fall?~There's an road to the west, a dirt path to the south and a path to the east.~FALSE~FALSE~FALSE~FALSE
+0~5~5~Venus Flytrap Plant~It looks dangerous. Maybe best not to put your finger in it.~There's a path to the east and west.~FALSE~FALSE~FALSE~FALSE
+0~5~6~Ghost Goo~There is some kind of white goo on the ground, it looks like it came from some kind of ghost monster...~There's an opening north and a path to the west.~TRUE~TRUE~TRUE~FALSE
+0~5~9~Pile of Leaves~There's a pile of leaves on the ground, green, orange, red leaves.~There's a dirt road to the north and a path to the south.~FALSE~FALSE~FALSE~FALSE
+0~6~1~Candy Bush~It looks like that bush has candy on it. It seems even this bush got affected by the magic.~There's a path north and south.~FALSE~FALSE~FALSE~FALSE
+0~6~4~Giant Log~A giant log is lying on the ground. It looks like frogs have started to live inside.~There's a road north and south.~FALSE~FALSE~FALSE~FALSE
+0~6~9~Birds Nest~It looks like some birds are living in the nest, they have such pretty green feathers.~There's a dirt path north and south.~FALSE~FALSE~FALSE~FALSE
+0~7~0~Small Cabin~The windows are too dirty to see inside. ~There's an opening to the east.~FALSE~FALSE~FALSE~FALSE
+0~7~1~Big Pile of Poop~Ew. You wonder who left this here.~There's a road to the north, an opening to the west and a path to the south.~FALSE~FALSE~FALSE~FALSE
+0~7~3~Potato Patch~So many potatoes growing in the ground here.~There's a path to the east and an opening to the south.~FALSE~FALSE~FALSE~FALSE
+0~7~4~Chili Garden~Someone has been growing chili here. But why are so many of the chili missing?~There's a road to the north, a path to the west and a road to the east.~TRUE~TRUE~TRUE~FALSE
+0~7~5~Palm Tree~What is a palm tree doing in the middle of the forest?~There's a road to the west and a path to the south.~FALSE~FALSE~FALSE~FALSE
+0~7~9~Cherry Blossom Tree~The petals are so pink and fall to the ground so gracefully.~There's a road north and south.~FALSE~FALSE~FALSE~FALSE
+0~8~1~Flower Bush~The bush has many different flowers all over it. How rare.~There's a path to the north and a road to the east.~FALSE~FALSE~FALSE~FALSE
+0~8~2~Giant Rock~There's a giant rock over here. You heard someone scream. Was that a human or a monster?~There's a road to the west and a path to the east.~TRUE~TRUE~TRUE~FALSE
+0~8~3~Small Lake~The water looks calm, there could be fish inside.~There's a path to the west, an opening to the north and a mud path to the south.~FALSE~FALSE~FALSE~FALSE
+0~8~5~Green Bush~That bush has many green leaves on it.~There's a path to the north and a road to the east.~FALSE~FALSE~FALSE~FALSE
+0~8~6~Apple Tree~There are many juicy red apples hanging from the tree.~There's a road to the west and a path to the east.~FALSE~FALSE~FALSE~FALSE
+0~8~7~Pepper Cloud~There seems to be some cloud in the air in this area. It looks black and smells like pepper...~There's a path to the west and an opening to the east.~TRUE~TRUE~TRUE~FALSE
+0~8~8~BOSS~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
+0~8~9~BOSS~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
+0~9~3~Green Goo~There is some kind of green slime on the floor. It looks sticky and smells strange.~There's an opening to the north and a path to the east.~FALSE~FALSE~FALSE~FALSE
+0~9~4~Banana Tree~There are many bananas growing on the tree, but they have blue spots all over them. Weird.~There's a path to the west.~FALSE~FALSE~FALSE~FALSE
+0~9~8~BOSS ~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
+0~9~9~BOSS ~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE

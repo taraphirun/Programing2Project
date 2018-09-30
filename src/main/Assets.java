@@ -3,13 +3,14 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
 public class Assets {
 //Defining Variable
 	//HERO
-	protected static Hero player = null;
+	protected static Hero player = new Hero("Default"); ;
 	//Map
 	protected static final int totalPlaceWithMonster = 20;
 	protected static int totalisMonsterNest =0;
@@ -34,7 +35,7 @@ public class Assets {
 	protected static ArrayList<Integer> monMasterListCount = new ArrayList<Integer>();
 	protected static int totalMonsters=0;
 	//Stages
-	protected static Place[][][] map = new Place [3][6][6];
+	protected static Place[][][] map = new Place [1][10][10];
 	protected static int totalPlaces=0;
 	
 //Methods
@@ -42,7 +43,9 @@ public class Assets {
 		loadIngList();
 		loadWeapList();
 		loadMonList();
-		loadMap();	
+		loadMap();
+		Hero.safeNounCount=-1;
+		
 	}
 	private static void loadIngList() {		
 		Scanner reader=null;
@@ -56,6 +59,10 @@ public class Assets {
 			ingMasterList.add(new Ingredient(line[0],line[1],Integer.parseInt(line[2]),Integer.parseInt(line[3]),Integer.parseInt(line[4]),Boolean.parseBoolean(line[5])));
 			ingMasterListCount.add(Integer.parseInt(line[6]));
 			totalIngredient+=Integer.parseInt(line[6]);
+			String[] name = line[0].split(" ");
+			for(String x:name) {
+				player.addSafeNoun(x);			
+			}
 		}
 		reader.close();
 	}
@@ -71,6 +78,10 @@ public class Assets {
 			weapMasterList.add(new Weapon(line[0],line[1],Integer.parseInt(line[2]),Integer.parseInt(line[3]),line[4]));
 			weapMasterListCount.add(Integer.parseInt(line[5]));
 			totalWeapons+=Integer.parseInt(line[5]);
+			String[] name = line[0].split(" ");
+			for(String x:name) {
+				player.addSafeNoun(x);
+			}
 		}
 		reader.close();
 	}
@@ -83,7 +94,7 @@ public class Assets {
 		}
 		while(reader.hasNextLine()) {
 			String[] line = reader.nextLine().split("~");
-			Scanner innerReader = new Scanner(line[5]);
+			Scanner innerReader = new Scanner(line[6]);
 			String[] ingList = innerReader.nextLine().split("`");
 			ArrayList<Item> ingArr = new ArrayList<Item>();
 			
@@ -93,9 +104,9 @@ public class Assets {
 					ingArr.add(tempt);
 				}
 			}
-			monMasterList.add(new Monster(line[0],line[1],Integer.parseInt(line[2]),Integer.parseInt(line[3]),ingArr));
-			monMasterListCount.add(Integer.parseInt(line[4]));
-			totalMonsters+=Integer.parseInt(line[4]);
+			monMasterList.add(new Monster(line[0],line[1],line[2],Integer.parseInt(line[3]),Integer.parseInt(line[4]),ingArr));
+			monMasterListCount.add(Integer.parseInt(line[5]));
+			totalMonsters+=Integer.parseInt(line[5]);
 			innerReader.close();
 		}
 		reader.close();
@@ -190,9 +201,8 @@ public class Assets {
 				placeIngredient.add(findIngredient());
 			}
 			int index = finalIngredientLocation.get(i);
-			System.out.println(map[IngredientLocation[index][0]][IngredientLocation[index][1]][IngredientLocation[index][2]]);
+//			System.out.println(map[IngredientLocation[index][0]][IngredientLocation[index][1]][IngredientLocation[index][2]]);
 			map[IngredientLocation[index][0]][IngredientLocation[index][1]][IngredientLocation[index][2]].addItemList(placeIngredient);
-			System.out.println(map[IngredientLocation[index][0]][IngredientLocation[index][1]][IngredientLocation[index][2]]);
 		}
 //Initialize map with Weapon
 		ArrayList<Integer> allWeaponLocation = new ArrayList<Integer>();
@@ -202,7 +212,7 @@ public class Assets {
 			allWeaponLocation.add(i,i);
 		}
 		Collections.shuffle(allWeaponLocation);
-//The number of place that can have monster can be up to totalPlaceWithMonster
+		//The number of place that can have monster can be up to totalPlaceWithMonster
 		if(totalisWeapon<=totalPlaceWithWeapon) {
 			for(int i=0;i<totalisWeapon;i++) {
 				finalWeaponLocation.add(i,allWeaponLocation.get(i));
@@ -214,7 +224,7 @@ public class Assets {
 			}
 			numOfWeaponLocation=totalPlaceWithWeapon;
 		}
-		//Ingredient
+		//Weapon
 		int numWeapon =(int)totalWeapons/numOfWeaponLocation;		
 		for(int i=0;i<numOfWeaponLocation;i++) {
 			ArrayList<Item> placeWeapon= new ArrayList<Item>();
@@ -226,6 +236,7 @@ public class Assets {
 		}
 		reader.close();
 	}
+	
 	private static Item findWeapon() {
 		if(totalWeapons!=0) {
 			int index = (int)(Math.random()*weapMasterListCount.size());

@@ -7,8 +7,8 @@ public class bMonster extends Monster implements Skills{
 	private int MP;
 	private int minHeavy=10;
 	private int minMagic=50;
-	public bMonster(String descr, String name, int damage,int MP,ArrayList<Item> itemList) {
-		super(descr, name, damage, MP, itemList);
+	public bMonster(String descr, String name,String battleCry, int damage,int MP,ArrayList<Item> itemList) {
+		super(descr, name,battleCry, damage, MP, itemList);
 		this.MP=MP;
 	}
 	@Override
@@ -20,6 +20,9 @@ public class bMonster extends Monster implements Skills{
 		}else {
 			return normalAttack();
 		}
+	}
+	public int normalAttack() {
+		return super.getDamage();
 	}
 ///Implement
 	@Override
@@ -41,6 +44,11 @@ public class bMonster extends Monster implements Skills{
 			MP-=mana;
 			return super.getDamage()*(1+mana);
 		}
+	}
+	@Override
+	public int heavyAttack() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

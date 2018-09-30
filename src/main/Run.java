@@ -4,42 +4,40 @@ public class Run {
 	private static String userInput="";
 	protected static boolean isPlaying=true;
 	public static void main(String[] args) {
+		mainMethod();
 
-//		Misc.loadGame();
-//		Hero newH = Assets.player;
-		
-//		System.out.println(newH);
-//		newH.go('e');
-//		newH.go('s');
-//		newH.go('e');
-//		System.out.println(newH.getLocation());
-//		newH.getLocation().checkInventory();
-//		newH.checkInventory();
-//		newH.dropItem();
-//		newH.checkInventory();
-//		System.out.println(newH.getLocation());
-//		newH.getLocation().checkInventory();
-//		Misc.saveGame();
+	}
+	public static void mainMethod() {
+		Misc.typePrint("When you are ready, type \'start\' to start the game!");
+		System.out.print(">>>");
 		String command="";
 		Scanner in = new Scanner(System.in);
 		while(isPlaying) {
 			command=in.nextLine();
+			System.out.println();
 			switch(command){
-			case("now"):case("start"):loadingScreen();break;
-			case("end"):isPlaying=false;break;
-			default:System.out.println("Wrong");
+			case("now"):case("start"):case"run":case"start game":case"run game":case"yes":case"sure":case"yup":loadingScreen();break;
+			case("end"):case"exit":case"exit game":case"end game":case"no":case"nope":isPlaying=false;break;
+			default:System.out.print("I don't understand what "+command+" mean. Do you want to start the game? \n>>>");
 			}
-		}	
-	}
-	private static void loadingScreen() {
-		Misc.typePrint("Welcome to Foodland!");
-		System.out.print(" 1. Start New Game\n 2. Load Game \n 3. Exit \nINPUT: ");
-		userInput = Integer.toString(Misc.safeInput1Int(1,2,3));
-		switch(userInput) {
-		case("1"):Misc.newGame();break;
-		case("2"):Misc.loadGame();Misc.command();break;
-		case("3"):isPlaying=false;break;
-		default:System.out.println("Wrong Input");
 		}
+		in.close();
+	}
+	private static void helpScreen() {
+		
+	}
+	protected static void loadingScreen() {
+		Scanner in = new Scanner(System.in);
+		Misc.typePrint("Welcome to Foodland!");
+		System.out.print(" 1. Start New Game\n 2. Load Game \n 3. Exit \n>>> ");
+		userInput = in.nextLine();
+		switch(userInput) {
+		case("1"):System.out.println();Misc.newGame();System.out.println("Welcome to Foodland, a magical world where food will eat you if you don't eat them first!");Misc.checkPlace();Misc.gameplay();break;
+		case("2"):System.out.println();Misc.loadGame();System.out.println("Welcome back!");Misc.checkPlace();Misc.gameplay();break;
+		case("3"):isPlaying=false;break;
+		default:System.out.println("Please choose one of the option above!");
+		}
+		System.out.println();
+		in.close();
 	}
 }
