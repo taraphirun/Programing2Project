@@ -151,7 +151,8 @@ public class Hero extends All implements Skills,comActions,Serializable{
 		boolean isExist= false;
 		for(Item x: inventory) {
 			String fName = x.getName().split(" ")[0];
-			if(x.getName().equalsIgnoreCase(fName) && !isExist) {
+			String inputFName = str.split(" ")[0];
+			if(inputFName.equalsIgnoreCase(fName) && !isExist) {
 				if(x instanceof Weapon) {
 					currentWeapon=(Weapon)x;
 					System.out.println("Your current weapon is "+currentWeapon.getName().toLowerCase()+".");
