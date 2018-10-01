@@ -122,26 +122,30 @@ public class Hero extends All implements Skills,comActions,Serializable{
 	public void eat(String str) {
 		Ingredient eatable;
 		boolean isEaten = false;
+		String fNameStr = str.split(" ")[0];
 		for(int i=0;i<inventory.size();i++) {
-			Item x = inventory.get(i);
-			String fName=x.getName().split(" ")[0];
-			if(fName.equalsIgnoreCase(str) && x instanceof Ingredient) {
-				eatable = (Ingredient)inventory.get(i);
-				if(eatable.isConsumable() || !isEaten) {
-					System.out.println("You consume "+eatable.getName()+". Your health was "+HP+" and your MP was "+MP+".");
-					HP+=eatable.getHP();
-					MP+=eatable.getMP();
-					if(HP>maxHP) {
-						HP=maxHP;
+			if(inventory.get(i) instanceof Ingredient) {
+				Ingredient x = (Ingredient)inventory.get(i);
+				String fName=x.getName().split(" ")[0];
+				if(fName.equalsIgnoreCase(fNameStr) && x.isConsumable()) {
+					eatable = (Ingredient)inventory.get(i);
+					if(eatable.isConsumable() || !isEaten) {
+						System.out.println("You consume "+eatable.getName()+". Your health was "+HP+" and your MP was "+MP+".");
+						HP+=eatable.getHP();
+						MP+=eatable.getMP();
+						if(HP>maxHP) {
+							HP=maxHP;
+						}
+						if(MP>maxMP) {
+							MP=maxMP;
+						}
+						inventory.remove(i);
+						isEaten=true;
+						System.out.println("Now your health is "+HP+" and your MP is "+MP+".");
 					}
-					if(MP>maxMP) {
-						MP=maxMP;
-					}
-					inventory.remove(i);
-					isEaten=true;
-					System.out.println("Now your health is "+HP+" and your MP is "+MP+".");
 				}
 			}
+			
 		}
 		if(!isEaten) {
 			System.out.println("You can't consume "+str+".");
@@ -191,8 +195,10 @@ public class Hero extends All implements Skills,comActions,Serializable{
 	}
 	public void dropItem(String x) {
 		ArrayList<Item> tempt = new ArrayList<Item>();
+		String xFName = x.split(" ")[0];
 		for(Item y:inventory) {
-			if(y.getName().equalsIgnoreCase(x)) {
+			String iFName = y.getName().split(" ")[0];
+			if(iFName.equalsIgnoreCase(xFName)) {
 				getLocation().addItem(y);
 				tempt.add(y);
 			}
@@ -202,6 +208,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 		}else {
 			for(Item item:tempt) {
 				inventory.remove(item);
+				cWeight-=item.getWeight();
 				System.out.println("You just dropped a "+x+".");
 			}
 		}
@@ -219,6 +226,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 	public void dropItem() {
 		if(inventory.size()!=0) {
 			getLocation().addItemList(inventory);
+			cWeight=0;
 			inventory.clear();
 			System.out.println("You just drop all items!");
 		}else {
