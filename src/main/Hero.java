@@ -46,13 +46,13 @@ public class Hero extends All implements Skills,comActions,Serializable{
 		MP=10;
 		XP=10;
 		s=0;x=0;y=0;
-		cWeight=50;
 		armor=null;
 		Weapon defaultWP = new Weapon("Dagger","It's an old, rusted dagger.",false,15,15,"Epic");
 		Weapon testWP = new Weapon("BOMB","It's a bomb!.",true,15,15,"Epic");
 		inventory.add(defaultWP);
 		inventory.add(testWP);
 		cWeight+=defaultWP.getWeight();
+		cWeight+=testWP.getWeight();
 		damage=50;
 	}
 	//For cloning purpose to track Hero previous location.
@@ -130,6 +130,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 				if(fName.equalsIgnoreCase(fNameStr) && x.isConsumable()) {
 					eatable = (Ingredient)inventory.get(i);
 					if(eatable.isConsumable() || !isEaten) {
+						cWeight-=eatable.getWeight();
 						System.out.println("You consume "+eatable.getName()+". Your health was "+HP+" and your MP was "+MP+".");
 						HP+=eatable.getHP();
 						MP+=eatable.getMP();
@@ -162,7 +163,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 					System.out.println("Your current weapon is "+currentWeapon.getName().toLowerCase()+".");
 					isExist=true;
 				}else {
-					System.out.println(str +" is not a weapon!");
+					System.out.println(x.getName() +" is not a weapon!");
 					isExist=true;
 				}
 			}
@@ -245,10 +246,11 @@ public class Hero extends All implements Skills,comActions,Serializable{
 			}else {
 				names+=inventory.get(0).getName().toLowerCase()+" ";
 			}
-			System.out.println("You have "+names+"in your inventory.");
+			System.out.println("You have "+names+" in your inventory.");
 		}else {
 			System.out.println("Your inventory is empty. Pick up something!");
 		}
+		System.out.println("Current inventory Weight "+cWeight+"units (Max Weight:100 units)");
 		
 	}
 	public Place getLocation() {

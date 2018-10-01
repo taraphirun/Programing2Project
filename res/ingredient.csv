@@ -1,21 +1,21 @@
 Tomato~Just tomato~2~5~0~TRUE~1
-Dragon Egg~Need to cook first~1~0~0~FAUIT~2
-Salt~Used for adding flavor in food~1~0~0~FAUIT~3
+Dragon Egg~Need to cook first~1~0~0~False ~2
+Salt~Used for adding flavor in food~1~0~0~False ~3
 Red Potion (Small)~Small Red Portion makes from many herps. If consume it, it will increase your HP by 15.~5~15~0~TRUE~4
 Blue Potion (Small)~Small Blue Portion makes from many magic herps. If consume it, it will increase your MP by 15.~5~0~15~TRUE~5
 Fruits Potion (Normal)~Normal Red Portion makes from many friuts and herps. If consume it, it will increase your HP by 50.~8~50~0~TRUE~6
 X Mana Potion (Normal)~Normal Blue Portion makes from many magic herps. If consume it, it will increase your MP by 50.~7~0~50~TRUE~7
 Mix fruity Potion (Big)~Big Red Portion makes from many friuts and hepts by special formular. If consume it, it will increase your HP by 150.~6~150~0~TRUE~8
 Ultimate Potion (Big)~Big Blue Portion makes from many magic herps. If consume it, it will increase your MP by 150.~9~0~150~TRUE~2
-Flour~Need to cook first~5~0~0~FAUIT~1
-Olive Oil~Need to cook first~4~0~0~FAUIT~5
+Flour~Need to cook first~5~0~0~False ~1
+Olive Oil~Need to cook first~4~0~0~False ~5
 Cheese~It has smell, but can eat. However, If it is cook, it will have good smell~3~15~0~TRUE~5
-Black Pepper~Spice for food.~3~0~0~FAUIT~3
-Garlic~Spice for food.~3~0~0~FAUIT~5
+Pepper~Spice for food.~3~0~0~False ~3
+Garlic~Spice for food.~3~0~0~False ~5
 Carrot~Just carot~10~3~0~TRUE~10
 Milk~If drink it, it will give lots of energy.~12~20~0~TRUE~11
 Corn~Just corn~2~25~0~TRUE~9
 Apple~The red fruit~1~10~0~TRUE~8
 Water~Water. Can find in water sources, such as lake, and pond.~11~2~10~TRUE~9
 Chocolate~Sweet taste and give a lots energies~9~25~0~TRUE~9
-Chili~Too hot spicy, cannot eat. Need to cook~8~0~0~FAUIT~9
+Chili~Too hot spicy, cannot eat. Need to cook~8~0~0~False ~9
