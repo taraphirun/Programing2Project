@@ -5,7 +5,6 @@ public class Run {
 	protected static boolean isPlaying=true;
 	public static void main(String[] args) {
 		mainMethod();
-
 	}
 	public static void mainMethod() {
 		Misc.typePrint("When you are ready, type \'start\' to start the game!");
@@ -23,17 +22,14 @@ public class Run {
 		}
 		in.close();
 	}
-	private static void helpScreen() {
-		
-	}
 	protected static void loadingScreen() {
 		Scanner in = new Scanner(System.in);
 		Misc.typePrint("Welcome to Foodland!");
 		System.out.print(" 1. Start New Game\n 2. Load Game \n 3. Exit \n>>> ");
 		userInput = in.nextLine();
 		switch(userInput) {
-		case("1"):System.out.println();Misc.newGame();System.out.println("Welcome to Foodland, a magical world where food will eat you if you don't eat them first!");Misc.checkPlace();Misc.gameplay();break;
-		case("2"):System.out.println();Misc.loadGame();System.out.println("Welcome back!");Misc.checkPlace();Misc.gameplay();break;
+		case("1"):System.out.println();Misc.newGame();System.out.println("Welcome to Foodland,"+ Assets.player.getName()+"! This is a magical world where food will eat you if you don't eat them first!");Misc.checkPlace();Misc.gameplay();break;
+		case("2"):System.out.println();Misc.loadGame();System.out.println("Welcome back "+Assets.player.getName()+"!");Misc.checkEnviron();Misc.gameplay();break;
 		case("3"):isPlaying=false;break;
 		default:System.out.println("Please choose one of the option above!");
 		}

@@ -3,9 +3,11 @@ package main;
 public class Weapon extends Item{
 	private int damage;
 	private String type;
-	public Weapon(String name, String descr, int weight,int damage,String type) {
+	private boolean isExplosive;
+	public Weapon(String name, String descr,boolean explosive, int weight,int damage,String type) {
 		super(name, descr, weight);
 		this.type=type;
+		this.isExplosive=explosive;
 		this.damage=damage;
 	}
 	///GET SET
@@ -17,5 +19,8 @@ public class Weapon extends Item{
 	}
 	protected String getType() {
 		return type;
+	}
+	protected boolean isExplosive() {
+		return isExplosive;
 	}
 }

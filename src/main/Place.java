@@ -71,6 +71,11 @@ public class Place extends All implements Serializable{
 	protected Monster getFightingMonster() {
 		return fightingMonster;
 	}
+	protected void rmFightingMonster() {
+		if(fightingMonster.getHP()==0) {
+			fightingMonster=null;
+		}
+	}
 	protected int getSize() {
 		return itemList.size();
 	}

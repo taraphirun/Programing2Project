@@ -1,9 +1,11 @@
 package main;
 
-import java.util.ArrayList;
-
 public interface comActions {
-//	void go(char d);
 	int attack();
 	void dropItem();
+	void decreaseHP(int damage);
+	void upgrade(int unit);
+	int getDamage();
+	String getName();
+	int getHP();
 }

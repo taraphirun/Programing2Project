@@ -14,7 +14,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 	private Weapon currentWeapon;
 	private String name;
 	private int cWeight;
-	private double HP,MP,XP; //use double to keep a more accurate data when updating
+	private double HP,MP,XP,damage; //use double to keep a more accurate data when updating
 	
 	
 	
@@ -25,16 +25,16 @@ public class Hero extends All implements Skills,comActions,Serializable{
 	private int y;
 	protected int[][] locationHistory = new int[2][2];
 		//General
-	protected int numMove=0;
-	private final int maxXP=500;////THIS is the ultimate constant that will define how high the other can be.
-	private int maxWeight=100;
-	private int maxHP=100;
-	private int maxMP=100;
+	private final int maxXP=1000;////THIS is the ultimate constant that will define how high the other can be.
+	private double maxWeight=100;
+	private double maxHP=100;
+	private double maxMP=100;
+	private double maxDamage=100;
 	
 	//CONSTANT
 	private static final int minMagic=15;
 	//CommandsOption
-	protected static String[] safeVerb = {"map","eat","drink","consume","clear","go","run","walk","move","view","check","look","examine","use","take","pick","fight","attack","save","change","inventory","drop","quit","end","health","HP","surrounding"};
+	protected static String[] safeVerb = {"throw","toss","attack","fight","kill","map","eat","drink","consume","clear","go","run","walk","move","view","check","look","examine","use","take","pick","fight","attack","save","change","inventory","drop","quit","end","health","HP","surrounding"};
 	protected static String[] safeDefaultNoun = {"all","hp","north","east","south","west","n","s","e","w","bag","monster","inventory","around","game","dagger","around","health"};
 	protected String[] safeNoun= new String[1000];
 	protected static int safeNounCount =-1;
@@ -48,9 +48,12 @@ public class Hero extends All implements Skills,comActions,Serializable{
 		s=0;x=0;y=0;
 		cWeight=50;
 		armor=null;
-		Weapon defaultWP = new Weapon("Dagger","It's an old, rusted dagger.",15,15,"Epic");
+		Weapon defaultWP = new Weapon("Dagger","It's an old, rusted dagger.",false,15,15,"Epic");
+		Weapon testWP = new Weapon("BOMB","It's a bomb!.",true,15,15,"Epic");
 		inventory.add(defaultWP);
+		inventory.add(testWP);
 		cWeight+=defaultWP.getWeight();
+		damage=50;
 	}
 	//For cloning purpose to track Hero previous location.
 	public Hero(int x,int y) {
@@ -125,7 +128,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 			if(fName.equalsIgnoreCase(str) && x instanceof Ingredient) {
 				eatable = (Ingredient)inventory.get(i);
 				if(eatable.isConsumable() || !isEaten) {
-					System.out.println("You consume "+str+". Your health was "+HP+" and your MP was "+MP+".");
+					System.out.println("You consume "+eatable.getName()+". Your health was "+HP+" and your MP was "+MP+".");
 					HP+=eatable.getHP();
 					MP+=eatable.getMP();
 					if(HP>maxHP) {
@@ -147,7 +150,8 @@ public class Hero extends All implements Skills,comActions,Serializable{
 	public void changeWeapon(String str) {
 		boolean isExist= false;
 		for(Item x: inventory) {
-			if(x.getName().equalsIgnoreCase(str)) {
+			String fName = x.getName().split(" ")[0];
+			if(x.getName().equalsIgnoreCase(fName) && !isExist) {
 				if(x instanceof Weapon) {
 					currentWeapon=(Weapon)x;
 					System.out.println("Your current weapon is "+currentWeapon.getName().toLowerCase()+".");
@@ -161,11 +165,12 @@ public class Hero extends All implements Skills,comActions,Serializable{
 		if(!isExist) {
 			System.out.println("You don't have this weapon!");
 		}
+		isExist=false;
 	}
 	public void changeArmor(Armor x) {
 		if(inventory.contains(x)) {
 			armor=x;
-			System.out.println("armor changed to "+armor);
+			System.out.println("Armor changed to "+armor);
 		}else {
 			System.out.println("You don't have this armor!");
 		}	
@@ -261,7 +266,6 @@ public class Hero extends All implements Skills,comActions,Serializable{
 			getLocation().resetFMove();
 //			String input = Misc.safeInput1Str("Yes","Sure","Sure!","Yup","No","Nope");
 			Scanner in = new Scanner(System.in);
-			Assets.player.numMove=0;
 			boolean isRightInput = false;
 			while(!isRightInput) {
 				String input = in.nextLine();
@@ -273,53 +277,88 @@ public class Hero extends All implements Skills,comActions,Serializable{
 			}
 		}
 	}
-	protected void getExperience(int xP) {
+	@Override
+	public void upgrade(int unit) {//Use to upgrade Hero
+		int xP = unit/10; //
 		if((XP+xP)<maxXP) {
 			XP += xP;
-			maxWeight+=(xP/10);
-			maxHP+=(xP/10);
-			maxMP+=(xP/5);
+			maxWeight+=(xP/5.0);
+			maxHP+=(xP/10.0);
+			maxMP+=(xP/10.0);
+			maxDamage+=(xP/10.0);
 		}else {
 			XP=maxXP;
-			maxWeight=(maxXP/10);
-			maxHP=(maxXP/10);
-			maxMP=(maxXP/10);
+			maxDamage=10+(maxXP/10.0);
+			maxWeight=100+(maxXP/5.0);
+			maxHP=100+(maxXP/10.0);
+			maxMP=100+(maxXP/10.0);
 		}	//for every 10 XP gained, player can carry 1 extra unit of weight....
 	}
 		//FIGHT
 	@Override
 	public int attack() {
-		if(currentWeapon!=null) {
+		if(currentWeapon!=null && !currentWeapon.isExplosive()) {
 			System.out.println("Attacking monster with "+currentWeapon.getName());
 			return weaponFight();
+		}else if(currentWeapon!=null &&currentWeapon.isExplosive()) {
+			System.out.println("You grab the "+currentWeapon.getName()+" and attempt to stab the monster! Doesn't work! It is an explosive device and must be throw!");			
+			return 0;
 		}else {
-			 return fistFight();
+			String[] fightStory = {"You don't have any weapon ready so fist fight!","With no weapon,you fight the monster bare hand!","Fist FIGHT!","Fist fight!","FIST FIGHT!!"};
+			int index = (int)(Math.random()*fightStory.length);
+			System.out.println(fightStory[index]);
+			return fistFight();
 		}
+	}
+	public int throwAttack(String x) {
+		String fName = x.split(" ")[0];
+		int damage =0;
+		for(int i=0;i<inventory.size();i++) {
+			if(inventory.get(i) instanceof Weapon) {
+				String itemFName = inventory.get(i).getName().split(" ")[0];
+				if(fName.equalsIgnoreCase(itemFName)) {
+					System.out.println("You quickly grab the "+inventory.get(i).getName()+" and toss it toward the monster! \nBOOOOM!!");
+					damage = ((Weapon)(inventory.get(i))).getDamage();
+					inventory.remove(i);
+				}
+			}
+		}
+		if(damage==0) {
+			System.out.println("This is not an explosive weapon!");
+			upgrade(damage);
+			return damage;
+		}
+		upgrade(damage);
+		return damage;
 	}
 	public int fistFight() {
 		int damage = (int)(XP/2);
+		upgrade(damage);
 		return damage;
 	}
 	public int weaponFight() {
 		int damage = (int)(XP/2)+currentWeapon.getDamage();
+		upgrade(damage);
 		return damage;
 	}
 	
 	@Override
 	public int heavyAttack() {///////Mana will be randomly generated
-		int mana = 5;
-		int damage = (int)(XP/2);
+		double mana = 5;
+		double damage = (XP/2);
 		if(MP<mana) {
 			System.out.println("You don't have enough MP!!!");
 			return 0;
 		}else{
 			MP-=mana;
-			return damage*(1+mana/2);
+			damage =damage*(1+(mana/20));
+			upgrade((int)damage);
+			return (int)damage;
 		}
 	}
 	@Override
 	public int magicAttack(int mana) {
-		int damage = (int)(XP/2);
+		double damage = XP/2;
 		if(MP<mana) {
 			System.out.println("You don't have enough MP!!!");
 			return 0;
@@ -328,7 +367,9 @@ public class Hero extends All implements Skills,comActions,Serializable{
 			return 0;
 		}else{
 			MP-=mana;
-			return damage*(1+mana);
+			damage = damage*(1+(mana/10));
+			upgrade((int)damage);
+			return (int)damage;
 		}
 	}
 	
@@ -356,10 +397,10 @@ public class Hero extends All implements Skills,comActions,Serializable{
 	
 	
 //	//GET SET
-	protected double getHP() {
-		return HP;
+	public int getHP() {
+		return (int)HP;
 	}
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 	protected int[][] getHisLocation(){
@@ -404,10 +445,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 				+ maxMP + "]";
 	}
 	@Override
-	public int heavyAttack(int mana) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getDamage() {
+		return (int) damage;
 	}
-	
-
 }

@@ -17,15 +17,16 @@ public class Misc {
 	private static Scanner in;
 	//Add to SafeStringNoun	
 	//GAMEPLAY
-	protected static void gameplay() {
+	protected static void gameplay() {//Mostly for fighting sequence
 		Place cPlace = Assets.player.getLocation();
 		Monster cMonster = cPlace.getFightingMonster();
-		
 		if(cPlace.getFightingMonster()==null || cPlace.numFightMove==0){
 			command();
 		}else if(cPlace.numFightMove!=0) {
-			System.out.println("damaged by " +cMonster.attack());
+			//IMPLEMENT FIGHTING
+			System.out.println("The monster attacks! " +cMonster.attack()+" damage!");
 			Assets.player.decreaseHP(cMonster.attack());
+			System.out.println("Your HP is "+Assets.player.getHP());
 			command();
 		}
 	}
@@ -40,47 +41,57 @@ public class Misc {
 			cPlace.numFightMove++;
 			verb=commandList[0];
 			switch(verb) {
-			case"map":System.out.println("X is where you are!");drawMap();System.out.println(Assets.player.getLocation().getDirection());gameplay();break;
-			case"clear":System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");gameplay();break;
-			case"inventory":Assets.player.checkInventory();gameplay();break;
-			case"save":saveGame();gameplay();break;
-			case"go":System.out.println("That's not a direction! Where do you want to go?");gameplay();break;
-			case"look":case"examine":case"view":case"check":System.out.println("What do you want to look at?");gameplay();break;
-			case"hp":case"health":System.out.println("Your current health is "+Assets.player.getHP());gameplay();break;
-			case"quit":case"exit":case"end":Run.isPlaying=false;break;
-			default:System.out.println("I don't understand...");gameplay();
+			case"attack":case"fight":case"kill":
+				try {
+					Assets.player.getLocation().getFightingMonster().decreaseHP(Assets.player.attack());
+				}catch(NullPointerException e) {
+					System.out.println("but it is already dead. There are no more monster here.");
+				}
+				gameplay();break;
+			case"map":isSafeMove();System.out.println("X is where you are!");drawMap();System.out.println(Assets.player.getLocation().getDirection());gameplay();break;
+			case"clear":isSafeMove();System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");gameplay();break;
+			case"inventory":isSafeMove();Assets.player.checkInventory();gameplay();break;
+			case"save":isSafeMove();saveGame();gameplay();break;
+			case"go":isSafeMove();System.out.println("That's not a direction! Where do you want to go?");gameplay();break;
+			case"look":case"examine":case"view":case"check":isSafeMove();System.out.println("What do you want to look at?");gameplay();break;
+			case"hp":case"health":isSafeMove();System.out.println("Your current health is "+Assets.player.getHP());gameplay();break;
+			case"quit":case"exit":case"end":isSafeMove();Run.isPlaying=false;break;
+			default:isSafeMove();System.out.println("I don't understand...");gameplay();
 			}
 		}else if(commandList.length==2) {
 			verb = commandList[0];
 			noun = commandList[1];
 			cPlace.numFightMove++;
 			switch(verb) {
+			case"throw":case"toss":Assets.player.getLocation().getFightingMonster().decreaseHP(Assets.player.throwAttack(noun));gameplay();break;
+			case"attack":case"fight":case"kill":Assets.player.getLocation().getFightingMonster().decreaseHP(Assets.player.attack());gameplay();break;
 			case"eat":case"drink":case"consume":Assets.player.eat(noun);gameplay();break;
 			case"pick":case"take":Assets.player.addItem(Assets.player.getLocation().takeFrom(noun));gameplay();break;
 			case"use":Assets.player.changeWeapon(noun);gameplay();break;
-			case"go":case"run":case"walk":case"move":Assets.player.go(noun);checkPlace();gameplay();break;
-			case"save":saveGame();gameplay();break;
+			case"go":case"run":case"walk":case"move":isSafeMove();Assets.player.go(noun);checkPlace();gameplay();break;
+			case"save":saveGame();isSafeMove();gameplay();break;
 			case"drop":
 				switch(noun) {
 				case"all":case"inventory":Assets.player.dropItem();gameplay();break;
 				default:Assets.player.dropItem(noun);gameplay();
 				}break;
-			case"look":case"examine":case"view":case"check":Place current = Assets.player.getLocation();
+			case"look":case"examine":case"view":case"check":isSafeMove();Place current = Assets.player.getLocation();
 				switch(noun) {
 				case"around":checkEnviron();gameplay();break;
-				case"monster":case"enemy":case"danger":current.numFightMove--;System.out.println(current.getFightingMonster().getDescr());gameplay();break;
-				case"inventory":case"bag":Assets.player.checkInventory();gameplay();break;
-				case"hp":case"health":System.out.println("Your current health is "+Assets.player.getHP());gameplay();break;
-				default:System.out.println("What do you want to look at?");gameplay();
+				case"monster":case"enemy":case"danger":isSafeMove();System.out.println(current.getFightingMonster().getDescr());gameplay();break;
+				case"inventory":case"bag":isSafeMove();Assets.player.checkInventory();gameplay();break;
+				case"hp":case"health":isSafeMove();System.out.println("Your current health is "+Assets.player.getHP());gameplay();break;
+				default:isSafeMove();System.out.println("What do you want to look at?");gameplay();
 				}break;
 			case"quit":case"exit":case"end":Run.isPlaying=false;break;
-			default:System.out.println("What do you mean...?");gameplay();
+			default:isSafeMove();System.out.println("What do you mean...?");gameplay();
 			}
 		}else {
+			isSafeMove();
 			System.out.println("Uh...what do you mean?");gameplay();
 		}
 	}
-//Password Encryptiofn
+//Password Encryption
 //	protected static void encrypt(String passwd) {
 //		String encrypted = "";
 //		try {
@@ -93,7 +104,11 @@ public class Misc {
 //	}
 	
 //Fight
+	private static void isSafeMove() {//use to allow user to move safely
+		Assets.player.getLocation().resetFMove();
+	}
 	
+//HELP ==>Assist user with basic control	
 //MAP
 	protected static void drawMap() {
 		 String hWall = "*****+";
@@ -161,7 +176,7 @@ public class Misc {
  */	
 	
 //CheckPlace
-	private static void checkEnviron() {
+	protected static void checkEnviron() {
 		Place place = Assets.player.getLocation();
 		System.out.println(place.getName().toUpperCase());
 		System.out.println(place.getDescr());
@@ -199,11 +214,12 @@ public class Misc {
 			}
 			System.out.println("There"+names+" here.");
 		}
+		//Later decide not to print anything if there are nothing to pick up.
 //		else {
 //			System.out.println("There is nothing to pick up here.");
 //		}
 	}
-	private static void checkMonster() {
+	protected static void checkMonster() {
 		//Monster
 		Place current = Assets.player.getLocation(); 
 		if(current.getFightingMonster()!=null && current.getFightingMonster().getHP()!=0) {
@@ -211,13 +227,12 @@ public class Misc {
 		}else if(current.getMonsterList().size()>0) {
 			current.numFightMove=0;
 			current.setFightingMonster(current.getMonsterList().remove(0));
-			System.out.println("There is a monster here! It's a "+current.getFightingMonster().getName()+"!");
+			System.out.println(current.getFightingMonster().getName()+"!");
 			System.out.println(current.getFightingMonster().getBattleCry());
 		}else {
 			current.setFightingMonster(null);
 		}
 	}
-	
 //Save&Load Game 
 	protected static void saveGame() {
 		File player = new File("saves/"+Assets.player.getName()+"/save.dat");
@@ -247,7 +262,7 @@ public class Misc {
 	protected static void newGame() {
 		in = new Scanner(System.in);
 		System.out.print("What would you like to be call? \n>>>");
-		String name=in.next();
+		String name=in.nextLine();
 		File dir = new File("saves/"+name);
 		if(dir.mkdirs()) {
 			
@@ -336,8 +351,6 @@ public class Misc {
 			System.out.println("You never played this game before! Welcome to Foodland!");
 			newGame();
 		}
-		
-//		gamePlay();
 	}
 	
 //Safe Keeping                   

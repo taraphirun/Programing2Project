@@ -75,9 +75,9 @@ public class Assets {
 		}
 		while(reader.hasNextLine()) {
 			String[] line = reader.nextLine().split("~");
-			weapMasterList.add(new Weapon(line[0],line[1],Integer.parseInt(line[2]),Integer.parseInt(line[3]),line[4]));
-			weapMasterListCount.add(Integer.parseInt(line[5]));
-			totalWeapons+=Integer.parseInt(line[5]);
+			weapMasterList.add(new Weapon(line[0],line[1],Boolean.parseBoolean(line[2]),Integer.parseInt(line[3]),Integer.parseInt(line[4]),line[5]));
+			weapMasterListCount.add(Integer.parseInt(line[6]));
+			totalWeapons+=Integer.parseInt(line[6]);
 			String[] name = line[0].split(" ");
 			for(String x:name) {
 				player.addSafeNoun(x);
@@ -172,6 +172,13 @@ public class Assets {
 			map[monsterNestLocation[index][0]][monsterNestLocation[index][1]][monsterNestLocation[index][2]].setMonsterList(placeMonster);
 			totalPlaces++;
 		}
+//Load MonsterBoss
+		//public bMonster(String descr, String name,String battleCry, int damage,int MP,ArrayList<Item> itemList) {
+		ArrayList<Item> finalList = new ArrayList<Item>();
+		Item key = new Item("The Key","An old rusted key.",0);
+		finalList.add(key);
+		bMonster boss = new bMonster("So far the most feroucious monster, this one is not something you want to mess with!","The Dude","You make a sound and got his attention. His bloody eyes cut through your soul as he launch himself in your direction.",20,110,finalList);
+		map[0][9][9].setFightingMonster(boss);
 		
 //Load the map with Item
 		ArrayList<Integer> allIngredientLocation = new ArrayList<Integer>();
