@@ -27,9 +27,18 @@ public class Misc {
 			System.out.println("The monster attacks! " +cMonster.attack()+" damage!");
 			Assets.player.decreaseHP(cMonster.attack());
 			System.out.println("Your HP is "+Assets.player.getHP());
-			command();
+			if(cPlace.getName().equalsIgnoreCase("FINALBOSS") && cPlace.getMonsterList().isEmpty()) {
+				typePrint("************GAME END***************");
+				typePrint("The Dude is dead! His giant Dragon body fall to the floor with a loud thud! You rush to the big iron gate that is guarding the kitchen, carrying your backpack tightly.");
+				typePrint("Unpacking your ingredients onto the kitchen counter you start to cook the most delicious meal you can think of. You chop the ingredients as quick as you can, stirring the pot vigorously. Finally, the meal is finished! ");
+				typePrint("All the townspeople gather around to collect their food, eating with delight, even licking the bowl until there is not a drop left. Everybody cheers! You did it! You saved the Kingdom!");
+				
+			}else {
+				command();
+			}
 		}
 	}
+
 	protected static void command() {
 		Place cPlace = Assets.player.getLocation();
 		String command  = safeInput2Str(Hero.safeVerb,Assets.player.safeNoun);
@@ -78,7 +87,7 @@ public class Misc {
 			case"look":case"examine":case"view":case"check":isSafeMove();Place current = Assets.player.getLocation();
 				switch(noun) {
 				case"around":checkEnviron();gameplay();break;
-				case"monster":case"enemy":case"danger":isSafeMove();System.out.println(current.getFightingMonster().getDescr());gameplay();break;
+				case"monster":case"enemy":case"danger":isSafeMove();System.out.println(current.getFightingMonster().getDescr()+" Current HP :"+current.getFightingMonster().getHP());gameplay();break;
 				case"inventory":case"bag":isSafeMove();Assets.player.checkInventory();gameplay();break;
 				case"hp":case"health":isSafeMove();System.out.println("Your current health is "+Assets.player.getHP());gameplay();break;
 				default:isSafeMove();System.out.println("What do you want to look at?");gameplay();
@@ -442,7 +451,6 @@ public class Misc {
 				}
 			}
 			System.out.print(" ");
-		} 
-		System.out.println("");
+		}System.out.println("");
 	}
 }

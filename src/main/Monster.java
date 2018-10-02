@@ -29,7 +29,7 @@ public class Monster extends All implements comActions,Cloneable{
 			Misc.checkMonster();
 		}
 	}
-	@Override
+	
 	public int attack() {
 //		upgrade(1);//Alter the 
 		double minDamage = .75; //Express in percentage of the whole damage

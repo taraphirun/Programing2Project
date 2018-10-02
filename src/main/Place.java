@@ -64,6 +64,9 @@ public class Place extends All implements Serializable{
 	protected void setMonsterList(ArrayList<Monster> monsterList) {
 		this.monsterList = monsterList;
 	}
+	protected void addBossMonster(bMonster x) {
+		monsterList.add(x);
+	}
 	protected void setFightingMonster(Monster x) {
 		this.fightingMonster=x;
 	}

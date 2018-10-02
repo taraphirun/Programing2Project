@@ -8,14 +8,15 @@ public class bMonster extends Monster implements Skills{
 	private int minHeavy=10;
 	private int minMagic=50;
 	private int mana=0;
-	public bMonster(String descr, String name,String battleCry, int damage,int MP,ArrayList<Item> itemList) {
-		super(descr, name,battleCry, damage, MP, itemList);
+	public bMonster(String name, String desc,String battleCry, int damage,int HP,int MP,ArrayList<Item> itemList) {
+		super(name, desc,battleCry, damage, HP, itemList);
 		this.MP=MP;
 	}
 	@Override
 	public int attack() {
+		System.out.println("BOSS ATTACK");
 		double typeAttack = Math.random()*100;
-		if(typeAttack>75) {//Account for both heavy and magic attack 
+		if(typeAttack>70) {//Account for both heavy and magic attack 
 			mana = (int)Math.random()*MP;
 			return magicAttack(mana);
 		}else {
@@ -32,7 +33,7 @@ public class bMonster extends Monster implements Skills{
 			return normalAttack();
 		}else if(mana>minHeavy && mana<minMagic) {
 			MP-=mana;
-			return super.getDamage()*(1+mana/2);
+			return super.getDamage()*(1+mana/100);
 		}else {
 			return magicAttack(mana);
 		}

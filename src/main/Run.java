@@ -12,7 +12,10 @@ public class Run {
 		String command="";
 		Scanner in = new Scanner(System.in);
 		while(isPlaying) {
-			command=in.nextLine();
+			if(in.hasNextLine())
+				command=in.nextLine();
+			else
+				break;
 			System.out.println();
 			switch(command){
 			case("now"):case("start"):case"run":case"start game":case"run game":case"yes":case"sure":case"yup":loadingScreen();break;

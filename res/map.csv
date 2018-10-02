@@ -48,9 +48,9 @@
 0~8~5~Green Bush~That bush has many green leaves on it.~There's a path to the north and a road to the east.~FALSE~FALSE~FALSE~FALSE
 0~8~6~Apple Tree~There are many juicy red apples hanging from the tree.~There's a road to the west and a path to the east.~FALSE~FALSE~FALSE~FALSE
 0~8~7~Pepper Cloud~There seems to be some cloud in the air in this area. It looks black and smells like pepper...~There's a path to the west and an opening to the east.~TRUE~TRUE~TRUE~FALSE
-0~8~8~BOSS~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
-0~8~9~BOSS~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
+0~8~8~BOSS Region~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
+0~8~9~BOSS Region~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
 0~9~3~Green Goo~There is some kind of green slime on the floor. It looks sticky and smells strange.~There's an opening to the north and a path to the east.~FALSE~FALSE~FALSE~FALSE
 0~9~4~Banana Tree~There are many bananas growing on the tree, but they have blue spots all over them. Weird.~There's a path to the west.~FALSE~FALSE~FALSE~FALSE
-0~9~8~BOSS ~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
-0~9~9~BOSS ~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
+0~9~8~BOSS Region~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE
+0~9~9~FINALBOSS~You are standing in a clearing. There is an ominous cave right infront.~There is only two ways, forward and back.~TRUE~TRUE~TRUE~FALSE

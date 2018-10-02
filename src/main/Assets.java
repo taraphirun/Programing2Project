@@ -177,8 +177,8 @@ public class Assets {
 		ArrayList<Item> finalList = new ArrayList<Item>();
 		Item key = new Item("The Key","An old rusted key.",0);
 		finalList.add(key);
-		bMonster boss = new bMonster("So far the most feroucious monster, this one is not something you want to mess with!","The Dude","You make a sound and got his attention. His bloody eyes cut through your soul as he launch himself in your direction.",20,110,finalList);
-		map[0][9][9].setFightingMonster(boss);
+		bMonster boss = new bMonster("The Dude","So far the most feroucious monster, this one is not something you want to mess with!","You make a sound and got his attention. His bloody eyes cut through your soul as he launch himself in your direction.",10,100,100,finalList);
+		map[0][9][9].addBossMonster(boss);
 		
 //Load the map with Item
 		ArrayList<Integer> allIngredientLocation = new ArrayList<Integer>();
