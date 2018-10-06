@@ -1,6 +1,10 @@
 package main;
 
 public class Ingredient extends Item{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int HP;
 	private int MP;
 	private boolean isConsumable;

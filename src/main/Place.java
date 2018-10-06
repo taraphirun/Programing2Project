@@ -7,8 +7,11 @@ public class Place extends All implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String placeName;
+	@SuppressWarnings("unused")
 	private boolean isMonsterNest;
+	@SuppressWarnings("unused")
 	private boolean isWeapon;
+	@SuppressWarnings("unused")
 	private boolean isIngredient;
 	private ArrayList<Item> itemList=new ArrayList<Item>();
 	private ArrayList<Monster> monsterList = new ArrayList<Monster>();

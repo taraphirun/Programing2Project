@@ -1,6 +1,10 @@
 package main;
 
 public class Armor extends Item{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int armorHP;
 	public Armor(String name, String descr, int weight,int armorHP) {
 		super(name, descr, weight);

@@ -1,6 +1,10 @@
 package main;
 
 public class Weapon extends Item{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int damage;
 	private String type;
 	private boolean isExplosive;

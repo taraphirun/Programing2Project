@@ -7,10 +7,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Misc {
@@ -40,56 +37,63 @@ public class Misc {
 	}
 
 	protected static void command() {
-		Place cPlace = Assets.player.getLocation();
-		String command  = safeInput2Str(Hero.safeVerb,Assets.player.safeNoun);
+		Hero hero = Assets.player;
+		Place cPlace = hero.getLocation();
+		String command  = safeInput2Str(Hero.safeVerb,hero.safeNoun);
 		in = new Scanner(command);
 		String[] commandList = in.nextLine().split(" ");
 		String verb;
 		String noun;
+		//COMMAND TYPE ONE ==> 1 word command
+		//Call gameplay() ==> make gameplay() to call command() thus loop
 		if(commandList.length==1) {
+			//Keep track of num of move, so can call monster to attack if hero ignore it
 			cPlace.numFightMove++;
 			verb=commandList[0];
 			switch(verb) {
+			//case:case:case ==> Allow for multiple keyword to call the same action
 			case"attack":case"fight":case"kill":
 				try {
-					Assets.player.getLocation().getFightingMonster().decreaseHP(Assets.player.attack());
+					cPlace.getFightingMonster().decreaseHP(hero.attack());
 				}catch(NullPointerException e) {
 					System.out.println("but it is already dead. There are no more monster here.");
 				}
 				gameplay();break;
-			case"map":isSafeMove();System.out.println("X is where you are!");drawMap();System.out.println(Assets.player.getLocation().getDirection());gameplay();break;
+				//isSafeMove() allow hero to perform the action without getting damage from monster
+			case"map":isSafeMove();System.out.println("X is where you are!");drawMap();System.out.println(cPlace.getDirection());gameplay();break;
 			case"clear":isSafeMove();System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");gameplay();break;
-			case"inventory":isSafeMove();Assets.player.checkInventory();gameplay();break;
+			case"inventory":isSafeMove();hero.checkInventory();gameplay();break;
 			case"save":isSafeMove();saveGame();gameplay();break;
 			case"go":isSafeMove();System.out.println("That's not a direction! Where do you want to go?");gameplay();break;
 			case"look":case"examine":case"view":case"check":isSafeMove();System.out.println("What do you want to look at?");gameplay();break;
-			case"hp":case"health":isSafeMove();System.out.println("Your current health is "+Assets.player.getHP());gameplay();break;
+			case"hp":case"health":isSafeMove();System.out.println("Your current health is "+hero.getHP());gameplay();break;
 			case"quit":case"exit":case"end":isSafeMove();Run.isPlaying=false;break;
 			default:isSafeMove();System.out.println("I don't understand...");gameplay();
 			}
+		//COMMAND TYPE TWO ==> Two words command
 		}else if(commandList.length==2) {
 			verb = commandList[0];
 			noun = commandList[1];
 			cPlace.numFightMove++;
 			switch(verb) {
-			case"throw":case"toss":Assets.player.getLocation().getFightingMonster().decreaseHP(Assets.player.throwAttack(noun));gameplay();break;
-			case"attack":case"fight":case"kill":Assets.player.getLocation().getFightingMonster().decreaseHP(Assets.player.attack());gameplay();break;
-			case"eat":case"drink":case"consume":Assets.player.eat(noun);gameplay();break;
-			case"pick":case"take":Assets.player.addItem(Assets.player.getLocation().takeFrom(noun));gameplay();break;
-			case"use":Assets.player.changeWeapon(noun);gameplay();break;
-			case"go":case"run":case"walk":case"move":isSafeMove();Assets.player.go(noun);checkPlace();gameplay();break;
+			case"throw":case"toss":cPlace.getFightingMonster().decreaseHP(hero.throwAttack(noun));gameplay();break;
+			case"attack":case"fight":case"kill":cPlace.getFightingMonster().decreaseHP(hero.attack());gameplay();break;
+			case"eat":case"drink":case"consume":hero.eat(noun);gameplay();break;
+			case"pick":case"take":hero.addItem(cPlace.takeFrom(noun));gameplay();break;
+			case"use":hero.changeWeapon(noun);gameplay();break;
+			case"go":case"run":case"walk":case"move":isSafeMove();hero.go(noun);checkPlace();gameplay();break;
 			case"save":saveGame();isSafeMove();gameplay();break;
 			case"drop":
 				switch(noun) {
-				case"all":case"inventory":Assets.player.dropItem();gameplay();break;
-				default:Assets.player.dropItem(noun);gameplay();
+				case"all":case"inventory":hero.dropItem();gameplay();break;
+				default:hero.dropItem(noun);gameplay();
 				}break;
-			case"look":case"examine":case"view":case"check":isSafeMove();Place current = Assets.player.getLocation();
+			case"look":case"examine":case"view":case"check":isSafeMove();
 				switch(noun) {
 				case"around":checkEnviron();gameplay();break;
-				case"monster":case"enemy":case"danger":isSafeMove();System.out.println(current.getFightingMonster().getDescr()+" Current HP :"+current.getFightingMonster().getHP());gameplay();break;
-				case"inventory":case"bag":isSafeMove();Assets.player.checkInventory();gameplay();break;
-				case"hp":case"health":isSafeMove();System.out.println("Your current health is "+Assets.player.getHP());gameplay();break;
+				case"monster":case"enemy":case"danger":isSafeMove();System.out.println(cPlace.getFightingMonster().getDescr()+" Current HP :"+cPlace.getFightingMonster().getHP());gameplay();break;
+				case"inventory":case"bag":isSafeMove();hero.checkInventory();gameplay();break;
+				case"hp":case"health":isSafeMove();System.out.println("Your current health is "+hero.getHP());gameplay();break;
 				default:isSafeMove();System.out.println("What do you want to look at?");gameplay();
 				}break;
 			case"quit":case"exit":case"end":Run.isPlaying=false;break;
@@ -399,6 +403,7 @@ public class Misc {
 			in.nextLine();
 			return result.toLowerCase();
 		}
+		//... allows this method to take unspecified number of String[]
 		public static String safeInput2Str(String[]... arr) {
 			System.out.print("\n>>>");
 			in= new Scanner(System.in);
@@ -419,13 +424,14 @@ public class Misc {
 						isInput1Ready=true;
 					}
 				}
-				for(String x:arr[1]) {
+				for(String x:arr[1]) {//realized [...] not needed cause use only 2 arrays, but still ok
 					if(x.equalsIgnoreCase(input2) && !isInput2Ready) {
 						result+=input2+" ";
 						isInput2Ready=true;
 					}
 				}
-				if(!isInput1Ready && result.equalsIgnoreCase("")) {//A verb must be there to tell the program what to do
+				//input1 is required ==>if input1 is empty, but input2 is not, still dismiss the command
+				if(!isInput1Ready && result.equalsIgnoreCase("")) {
 					System.out.println("Invalid Option. \n>>>");
 					reader.close();
 					return safeInput2Str(arr);

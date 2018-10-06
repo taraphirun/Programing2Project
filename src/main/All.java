@@ -3,6 +3,10 @@ package main;
 import java.io.Serializable;
 
 public abstract class All implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String Descr;
 
 	public All(String descr) {

@@ -68,7 +68,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 		Hero cloneHero = new Hero(this.x,this.y);
 		cloneHero.safeMove(d);
 		if(this.getLocation().getMonsterList().isEmpty()) {
-			System.out.println(this.safeMove(d));
+			System.out.println(this.safeMove(d));	
 		}else if(this.locationHistory[0][0]==cloneHero.getX() && this.locationHistory[0][1]==cloneHero.getY()) {
 			getLocation().resetFMove();//To allow user 1 move when move back in to the place
 			System.out.println(this.safeMove(d));
@@ -286,6 +286,7 @@ public class Hero extends All implements Skills,comActions,Serializable{
 				default:System.out.print("uh...I don't understand. Do you want to continue? \n>>>");
 				}
 			}
+			in.close();
 		}
 	}
 	@Override
@@ -296,10 +297,10 @@ public class Hero extends All implements Skills,comActions,Serializable{
 			maxWeight+=(xP/5.0);
 			maxHP+=(xP/10.0);
 			maxMP+=(xP/10.0);
-			maxDamage+=(xP/10.0);
+			setMaxDamage(getMaxDamage() + (xP/10.0));
 		}else {
 			XP=maxXP;
-			maxDamage=10+(maxXP/10.0);
+			setMaxDamage(10+(maxXP/10.0));
 			maxWeight=100+(maxXP/5.0);
 			maxHP=100+(maxXP/10.0);
 			maxMP=100+(maxXP/10.0);
@@ -458,5 +459,11 @@ public class Hero extends All implements Skills,comActions,Serializable{
 	@Override
 	public int getDamage() {
 		return (int) damage;
+	}
+	public double getMaxDamage() {
+		return maxDamage;
+	}
+	public void setMaxDamage(double maxDamage) {
+		this.maxDamage = maxDamage;
 	}
 }

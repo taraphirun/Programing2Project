@@ -1,6 +1,10 @@
 package main;
 
 public class Item extends All {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//DATA MEMBERS
 	private int weight;
 	private String name;

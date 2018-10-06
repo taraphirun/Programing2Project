@@ -3,7 +3,6 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -120,21 +119,22 @@ public class Assets {
 		}
 		while(reader.hasNextLine()) {
 			String[] line = reader.nextLine().split("~");
+			//Initialize map
 			map[Integer.parseInt(line[0])][Integer.parseInt(line[1])][Integer.parseInt(line[2])] = new Place(line[3],line[4],line[5],Boolean.parseBoolean(line[6]),Boolean.parseBoolean(line[7]),Boolean.parseBoolean(line[8]),Boolean.parseBoolean(line[9]));
-			if(Boolean.parseBoolean(line[8])) {
+			if(Boolean.parseBoolean(line[8])) {//@line[8] = isMonsterNestLocation ==> if it is, then keep track of it
 				monsterNestLocation[totalisMonsterNest][0]= Integer.parseInt(line[0]);
 				monsterNestLocation[totalisMonsterNest][1]= Integer.parseInt(line[1]);
 				monsterNestLocation[totalisMonsterNest][2]= Integer.parseInt(line[2]);
 				totalisMonsterNest++;
 			}
 			//public Place(String name,String descr,String direction,boolean isWeapon,boolean isIngredient,boolean isMonsterNest,boolean isConnected) {
-			if(Boolean.parseBoolean(line[7])) {
+			if(Boolean.parseBoolean(line[7])) {//@line[7] = isIngredientLocation
 				IngredientLocation[totalisIngredient][0]= Integer.parseInt(line[0]);
 				IngredientLocation[totalisIngredient][1]= Integer.parseInt(line[1]);
 				IngredientLocation[totalisIngredient][2]= Integer.parseInt(line[2]);
 				totalisIngredient++;
 			}
-			if(Boolean.parseBoolean(line[6])) {
+			if(Boolean.parseBoolean(line[6])) {//@line[6] = isWeaponLocation
 				WeaponLocation[totalisWeapon][0]= Integer.parseInt(line[0]);
 				WeaponLocation[totalisWeapon][1]= Integer.parseInt(line[1]);
 				WeaponLocation[totalisWeapon][2]= Integer.parseInt(line[2]);
@@ -173,7 +173,7 @@ public class Assets {
 			totalPlaces++;
 		}
 //Load MonsterBoss
-		//public bMonster(String descr, String name,String battleCry, int damage,int MP,ArrayList<Item> itemList) {
+		//Add BossMonster to the boss's location array of Monster
 		ArrayList<Item> finalList = new ArrayList<Item>();
 		Item key = new Item("The Key","An old rusted key.",0);
 		finalList.add(key);
